@@ -1,0 +1,13 @@
+Package: SVCJP
+Type: Package
+Title: Jump detection and coefficient estimation for the semi-varying coefficient model with jump points (SVCJP)
+Version: 1.0
+Date: 2025-01-11
+Author: Pan Liu
+Maintainer: Pan Liu <panliu23@g.ucla.edu>
+Description: Jump detection and coefficient estimation for the semi-varying coefficient model with jump points (SVCJP).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: Rcpp (>= 1.0.9), RcppEigen, MASS, pracma, stats
+LinkingTo: Rcpp, RcppEigen
+RoxygenNote: 7.2.3

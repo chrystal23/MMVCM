@@ -1,0 +1,5 @@
+useDynLib(SVCJP)
+import(RcppEigen)
+importFrom(Rcpp, evalCpp)
+export(SVCJP)
+export(CoefJump)
