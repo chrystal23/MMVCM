@@ -63,6 +63,8 @@ SVCJP <- function(tin,
   q = dim(zin)[2]
   m = dim(tin)[2]
   
+  t_ord = order(tin[,1])
+  
   # weight
   if (is.null(win)) {
     win = rep(1, n)
@@ -74,13 +76,14 @@ SVCJP <- function(tin,
     if (sum(win>=0) < n){
       stop("Weight win needs to be a vector of nonnegative numbers.")
     }
-    win = win[order(tin[,1])]
+    win = win[t_ord]
     win = win/sum(win)
   }
-  yin = yin[order(tin[,1])]
-  xin = xin[order(tin[,1]), , drop=F]
-  zin = zin[order(tin[,1]), , drop=F]
-  tin = tin[order(tin[,1]), , drop=F]
+
+  yin = yin[t_ord]
+  xin = xin[t_ord, , drop=F]
+  zin = zin[t_ord, , drop=F]
+  tin = tin[t_ord, , drop=F]
   
   ## Bandwidth selection range
   bw_rn = 6
@@ -274,10 +277,18 @@ SVCJP <- function(tin,
   
   if (verbose) message('MSE: ', mse)
   
+  # Correspond the outputs to the inputs (reverse the ordering)
+  alp_est = smcObj$alp_est
+  for (j in 1:(p+1)) {
+    alp_est[[j]]$gamma.hat[t_ord] = alp_est[[j]]$gamma.hat
+    alp_est[[j]]$alp.hat[t_ord] = alp_est[[j]]$alp.hat
+  }
+  yhat[t_ord] = yhat
+  
   
   ##
   res <- list(beta_hat = beta_hat, 
-              alp_est = smcObj$alp_est, 
+              alp_est = alp_est, 
               yhat = yhat, 
               mse = mse,
               tunning_parameters = list(h_1 = h_1, 
@@ -711,8 +722,8 @@ CoefJump <- function(tin,
                           function(z) sum(alpj_jumpsize_h_d*(z >= alpj_jumptime)))
         yyin <- yyin - ysubstr * cbind(1,xin)[,j]
         
-        if (verbose) message('  alpha_', j-1, ' no. ', ell, ' dimension --- jump location:', 
-                             alpj_jumptime, '  jump size:', alpj_jumpsize_h_d)
+        if (verbose) message('  alpha_', j-1, ' no. ', ell, ' dimension --- jump location: ', 
+                             paste(alpj_jumptime, collapse = ', '), '  jump size: ', paste(alpj_jumpsize_h_d, collapse = ', '))
       }
       
     }
