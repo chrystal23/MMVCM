@@ -48,7 +48,6 @@ The SVCJP function returns a list of estimation results:
 - `yhat`: A vector of estimated response given the input.
 - `mse`: The mean squared error of response.
 - `tuning_parameters`: The tuning parameters selected for our SVCJP method, including h_1, h_tau, h_d, h_2, zeta, and rho_d.
-- `...`: Other estimation results.
 
 ### Examples
 An example input data with one index variable can be loaded using
