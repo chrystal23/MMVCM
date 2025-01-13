@@ -412,8 +412,8 @@ CoefJump <- function(tin,
     
     for (j in 1:(p+1)) {
       
-      res[[j]][[ell]] = vector(mode = 'list', length = 3)
-      names(res[[j]][[ell]]) = c('jumptime','jumpsize','jumpsize_h_tau')
+      res[[j]][[ell]] = vector(mode = 'list', length = 2)
+      names(res[[j]][[ell]]) = c('jumptime','jumpsize')
       
       alpj_diff = alp_est_right[,j] - alp_est_left[,j]
       
