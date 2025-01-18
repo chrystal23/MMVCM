@@ -58,13 +58,13 @@ which include an example response vector (length 2000) `yin`, a linear-coefficie
 ```r
 res_1d <- SVCJP(tin = tin, yin = yin, xin = xin, zin = zin)
 #> Part 1: Estimation of the linear part.
-#> Bandwidth for Part 1: h_1 = 0.0141032264316281
+#>   Bandwidth for Part 1: h_1 = 0.0141032264316281
 #> Part 2: Estimation of the nonparametric part.
-#> Selecting tuning parameters (h_tau, h_d, h_2) for Part 2 ...
-#> Bandwidths for Part 2: h_tau = 0.11793200278167; h_d = 0.183449782104819; h_2 = 0.121207891747827
-#> Threshold: zeta = 0.419961504585789
-#> Searching Stage starts...
-#> Refining is not needed when m=1.
+#>   Selecting tuning parameters (h_tau, h_d, h_2) for Part 2 ...
+#>   Bandwidths for Part 2: h_tau = 0.11793200278167; h_d = 0.183449782104819; h_2 = 0.121207891747827
+#>   Threshold: zeta = 0.419961504585789
+#>   Searching Stage starts...
+#>   Refining is not needed when m=1.
 #> Jump detection results:
 #>   alpha_0 no. 1 dimension --- jump location: 0.5  jump size: 0.688986924366104
 #>   alpha_1 no. 1 dimension --- jump location: 0.201986962169702, 0.507641359944367, 0.798013037830298  jump size: 0.835185426234261, -0.993902396429124, 1.0587339838777
@@ -99,15 +99,15 @@ The SVCJP function can be similarly applied to an example data with two index va
 data(syn_data_2d)
 res_2d <- SVCJP(tin = tin, yin = yin, xin = xin, zin = zin)
 #> Part 1: Estimation of the linear part.
-#> Bandwidth for Part 1: h_1 = 0.0599387123344194
+#>   Bandwidth for Part 1: h_1 = 0.0599387123344194
 #> Part 2: Estimation of the nonparametric part.
-#> Selecting tuning parameters (h_tau, h_d, h_2) for Part 2 ...
-#> Bandwidths for Part 2: h_tau = 0.10482844691704; h_d = 0.366899564209639; h_2 = 0.235864005563339
-#> Threshold: zeta = 0.435045982691555
-#> Searching Stage starts...
-#> Refining Stage starts...
-#> iteration 1
-#> Refining stage successfully converges.
+#>   Selecting tuning parameters (h_tau, h_d, h_2) for Part 2 ...
+#>   Bandwidths for Part 2: h_tau = 0.10482844691704; h_d = 0.366899564209639; h_2 = 0.235864005563339
+#>   Threshold: zeta = 0.435045982691555
+#>   Searching Stage starts...
+#>   Refining Stage starts...
+#>     iteration 1
+#>     Refining stage successfully converges.
 #> Jump detection results:
 #>   alpha_0 no. 1 dimension --- no jump.
 #>   alpha_1 no. 1 dimension --- jump location: 0.30241422345852, 0.60274460380157  jump size: 1.22728045873697, -1.11448703623094
