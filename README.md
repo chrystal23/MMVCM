@@ -56,6 +56,7 @@ data(syn_data_1d)
 ```
 which include an example response vector (length 2000) `yin`, a linear-coefficient covariate matrix (2000 x 2) `zin`, a varying-coefficient covariate matrix (2000 x 2) `xin`, and an index variable matrix (2000 x 1) `tin`. To implement our SVCJP method on this example data to detect jumps and estimate coefficients, we run
 ```r
+set.seed(123)
 res_1d <- SVCJP(tin = tin, yin = yin, xin = xin, zin = zin)
 #> Part 1: Estimation of the linear part.
 #>   Bandwidth for Part 1: h_1 = 0.0141032264316281
@@ -97,25 +98,26 @@ ggplot(pdat_1d, aes(x = t1, y = coefficient)) + geom_point() + facet_wrap(~term)
 The SVCJP function can be similarly applied to an example data with two index variables:
 ```r
 data(syn_data_2d)
+set.seed(123)
 res_2d <- SVCJP(tin = tin, yin = yin, xin = xin, zin = zin)
 #> Part 1: Estimation of the linear part.
-#>   Bandwidth for Part 1: h_1 = 0.0599387123344194
+#>   Bandwidth for Part 1: h_1 = 0.0493612925106984
 #> Part 2: Estimation of the nonparametric part.
 #>   Selecting tuning parameters (h_tau, h_d, h_2) for Part 2 ...
-#>   Bandwidths for Part 2: h_tau = 0.10482844691704; h_d = 0.366899564209639; h_2 = 0.235864005563339
-#>   Threshold: zeta = 0.435045982691555
+#>   Bandwidths for Part 2: h_tau = 0.1310355586463; h_d = 0.314485340751119; h_2 = 0.222760449698709
+#>   Threshold: zeta = 0.396116153055595
 #>   Searching Stage starts...
 #>   Refining Stage starts...
 #>     iteration 1
 #>     Refining stage successfully converges.
 #> Jump detection results:
 #>   alpha_0 no. 1 dimension --- no jump.
-#>   alpha_1 no. 1 dimension --- jump location: 0.30241422345852, 0.60274460380157  jump size: 1.22728045873697, -1.11448703623094
-#>   alpha_2 no. 1 dimension --- jump location: 0.5  jump size: -0.938222875732815
+#>   alpha_1 no. 1 dimension --- jump location: 0.300759201669002, 0.603310043579036  jump size: 1.1305253870458, -0.995637692506279
+#>   alpha_2 no. 1 dimension --- jump location: 0.5  jump size: -0.913409395458264
 #>   alpha_0 no. 2 dimension --- no jump.
-#>   alpha_1 no. 2 dimension --- jump location: 0.5  jump size: 0.948264905268609
+#>   alpha_1 no. 2 dimension --- jump location: 0.5  jump size: 0.895669173817275
 #>   alpha_2 no. 2 dimension --- no jump.
-#> MSE: 0.513229916702457
+#> MSE: 0.508780397403866
 ```
 The estimation results for this example can be also be accessed through:
 ```r
