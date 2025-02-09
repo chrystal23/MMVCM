@@ -15,29 +15,14 @@ devtools::install_github("chrystal23/SVCJP")
 
 ## Tutorial
 
-The main function SVCJP requires the following inputs:
+The main function SVCJP requires the following inputs: (The optional input arguments are listed at the bottom of this tutorial)
 
 ### Inputs
 
-- `tin` A matrix containing the observed values of the index variables. Each column corresponds to one index variable.
-- `yin` A vector containing the observed values of the response.
-- `xin` A matrix containing the observed values of the covariates with varying coefficients. Each column corresponds to one covariate.
-- `zin` A matrix containing the observed values of the covariates with linear (non-varying) coefficients. Each column corresponds to one covariate.
-- `win` A vector of weights for each observation. If win = NULL (Default), equal weights will be assigned.
-- `zeta` The threshold value for change point (jump) detection. If zeta = NULL (Default), the threshold function will be calculated based on theoretical results.
-- `bw.seq1` A vector containing the candidate values for bandwidth selection in Part 1 (for h_1). If bw.seq1 = NULL (Default), the candidate values will be generated based on theoretical results.
-- `bw.seq2` A vector containing the candidate values for bandwidth selection in Part 2 (for h_tau, h_d, and h_2). If bw.seq2 = NULL (Default), the candidate values will be generated based on theoretical results.
-- `kernel` The smoothing kernel used for estimation, including "epan" (Default, the Epanechnikov kernel), "rect", "gauss", "gausvar", and "quar".
-- `NbGrid` The number of grid points used for jump detection in each index dimension. Default is 101.
-- `nRegGrid` The number of grid points to generate output estimation, mainly for plotting purpose. Default is 101.
-- `kFolds` The number of folds for bandwidth cross validation selection. Default is 5.
-- `npoly` The degree of polynomial. Default is 1 for local linear smoothing.
-- `nder` The order of derivative, which should be smaller than npoly. Default is 0 for local linear smoothing.
-- `hkappa` A numeric value (> 1) for neighborhood width adjustment in jump detection to avoid repeated identification of the same jump. Default is 2.
-- `Refine` A boolean indicating whether to perform the Refining Stage (iterative refining) in jump detection.
-- `refine_tol` The tolerance value for the Refining Stage. Default is 1e-4.
-- `refine_maxiter` The maximum number of iterations allowed in the Refining Stage. Default is 10.
-- `verbose` A boolean indicating whether to output more information during function execution. Default is TRUE.
+- `tin` A matrix containing the observed values of the index variables. Each column corresponds to one index variable. **This input argument corresponds to $(\bm{T}_1,\ldots, \bm{T}_n)^\top$ in our paper.**
+- `yin` A vector containing the observed values of the response, **corresponding to $(Y_1,\ldots,Y_n)^\top$ in our paper.**
+- `xin` A matrix containing the observed values of the covariates with varying coefficients. Each column corresponds to one covariate. **This input argument corresponds to $(\mathbf{\mathcal{X}}_1,\ldots,\mathbf{\mathcal{X}}_n)^\top$ in our paper.**
+- `zin` A matrix containing the observed values of the covariates with linear (non-varying) coefficients. Each column corresponds to one covariate.  **This input argument corresponds to the notation $(\bm{Z}_1,\ldots, \bm{Z}_n)^\top$ in our paper.**
 
 The SVCJP function returns a list of estimation results: 
 
@@ -144,4 +129,24 @@ lattice::cloud(coefficient~t1*t2 | term, data = pdat_2d,
                                    fontsize = list(text = 9))) 
 ```
 <img src="man/figures/alpha_hat_2d.png" width="100%" />
+
+### Optional Inputs
+
+When calling the main function SVCJP, users may specify the following optional input argument if needed. However, we recommend doing so only when reliable prior information is available, as the default values are determined based on rigorous theoretical derivations.
+
+- `win` A vector of weights for each observation. If win = NULL (Default), equal weights will be assigned.
+- `zeta` The threshold value for change point (jump) detection. If zeta = NULL (Default), the threshold function will be calculated based on theoretical results.
+- `bw.seq1` A vector containing the candidate values for bandwidth selection in Part 1 (for h_1). If bw.seq1 = NULL (Default), the candidate values will be generated based on theoretical results.
+- `bw.seq2` A vector containing the candidate values for bandwidth selection in Part 2 (for h_tau, h_d, and h_2). If bw.seq2 = NULL (Default), the candidate values will be generated based on theoretical results.
+- `kernel` The smoothing kernel used for estimation, including "epan" (Default, the Epanechnikov kernel), "rect", "gauss", "gausvar", and "quar".
+- `NbGrid` The number of grid points used for jump detection in each index dimension. Default is 101.
+- `nRegGrid` The number of grid points to generate output estimation, mainly for plotting purpose. Default is 101.
+- `kFolds` The number of folds for bandwidth cross validation selection. Default is 5.
+- `npoly` The degree of polynomial. Default is 1 for local linear smoothing.
+- `nder` The order of derivative, which should be smaller than npoly. Default is 0 for local linear smoothing.
+- `hkappa` A numeric value (> 1) for neighborhood width adjustment in jump detection to avoid repeated identification of the same jump. Default is 2.
+- `Refine` A boolean indicating whether to perform the Refining Stage (iterative refining) in jump detection.
+- `refine_tol` The tolerance value for the Refining Stage. Default is 1e-4.
+- `refine_maxiter` The maximum number of iterations allowed in the Refining Stage. Default is 10.
+- `verbose` A boolean indicating whether to output more information during function execution. Default is TRUE.
 
