@@ -19,10 +19,10 @@ The main function SVCJP requires the following inputs: (The optional input argum
 
 ### Inputs
 
-- `tin` A matrix containing the observed values of the index variables. Each column corresponds to one index variable. **This input argument corresponds to $(\bm{T}_1,\ldots, \bm{T}_n)^\top$ in our paper.**
+- `tin` A matrix containing the observed values of the index variables. Each column corresponds to one index variable. **This input argument corresponds to $(\mathbf{T}_1,\ldots, \mathbf{T}_n)^\top$ in our paper.**
 - `yin` A vector containing the observed values of the response, **corresponding to $(Y_1,\ldots,Y_n)^\top$ in our paper.**
 - `xin` A matrix containing the observed values of the covariates with varying coefficients. Each column corresponds to one covariate. **This input argument corresponds to $(\mathbf{\mathcal{X}}_1,\ldots,\mathbf{\mathcal{X}}_n)^\top$ in our paper.**
-- `zin` A matrix containing the observed values of the covariates with linear (non-varying) coefficients. Each column corresponds to one covariate.  **This input argument corresponds to the notation $(\bm{Z}_1,\ldots, \bm{Z}_n)^\top$ in our paper.**
+- `zin` A matrix containing the observed values of the covariates with linear (non-varying) coefficients. Each column corresponds to one covariate.  **This input argument corresponds to the notation $(\mathbf{Z}_1,\ldots, \mathbf{Z}_n)^\top$ in our paper.**
 
 The SVCJP function returns a list of estimation results: 
 
