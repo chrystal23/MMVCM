@@ -1,4 +1,4 @@
-Package: SVCJP
+Package: MMVCM
 Type: Package
 Title: Jump detection and coefficient estimation for the semi-varying coefficient model with jump points (SVCJP)
 Version: 1.0
@@ -10,4 +10,4 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: Rcpp (>= 1.0.9), RcppEigen, MASS, pracma, stats
 LinkingTo: Rcpp, RcppEigen
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2

@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // CPPlwls2d_s1
 Eigen::MatrixXd CPPlwls2d_s1(const double& bw, const std::string kernel_type, const Eigen::Map<Eigen::VectorXd>& win, const Eigen::Map<Eigen::MatrixXd>& tin, const Eigen::Map<Eigen::VectorXd>& yin, const Eigen::Map<Eigen::MatrixXd>& xin, const Eigen::Map<Eigen::MatrixXd>& zin, const Eigen::Map<Eigen::MatrixXd>& tout, const unsigned int& npoly, const unsigned int& nder);
-RcppExport SEXP _SVCJP_CPPlwls2d_s1(SEXP bwSEXP, SEXP kernel_typeSEXP, SEXP winSEXP, SEXP tinSEXP, SEXP yinSEXP, SEXP xinSEXP, SEXP zinSEXP, SEXP toutSEXP, SEXP npolySEXP, SEXP nderSEXP) {
+RcppExport SEXP _MMVCM_CPPlwls2d_s1(SEXP bwSEXP, SEXP kernel_typeSEXP, SEXP winSEXP, SEXP tinSEXP, SEXP yinSEXP, SEXP xinSEXP, SEXP zinSEXP, SEXP toutSEXP, SEXP npolySEXP, SEXP nderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -33,7 +33,7 @@ END_RCPP
 }
 // CPPlwls2d_s2
 Eigen::MatrixXd CPPlwls2d_s2(const double& bw, const std::string kernel_type, const Eigen::Map<Eigen::VectorXd>& win, const Eigen::Map<Eigen::MatrixXd>& tin, const Eigen::Map<Eigen::VectorXd>& yin, const Eigen::Map<Eigen::MatrixXd>& xin, const Eigen::Map<Eigen::MatrixXd>& tout, const unsigned int& npoly, const unsigned int& nder);
-RcppExport SEXP _SVCJP_CPPlwls2d_s2(SEXP bwSEXP, SEXP kernel_typeSEXP, SEXP winSEXP, SEXP tinSEXP, SEXP yinSEXP, SEXP xinSEXP, SEXP toutSEXP, SEXP npolySEXP, SEXP nderSEXP) {
+RcppExport SEXP _MMVCM_CPPlwls2d_s2(SEXP bwSEXP, SEXP kernel_typeSEXP, SEXP winSEXP, SEXP tinSEXP, SEXP yinSEXP, SEXP xinSEXP, SEXP toutSEXP, SEXP npolySEXP, SEXP nderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -52,7 +52,7 @@ END_RCPP
 }
 // CPPlwls2d_s2_LR
 Eigen::MatrixXd CPPlwls2d_s2_LR(const double& bw, const std::string kernel_type, const Eigen::Map<Eigen::VectorXd>& win, const Eigen::Map<Eigen::MatrixXd>& tin, const Eigen::Map<Eigen::VectorXd>& yin, const Eigen::Map<Eigen::MatrixXd>& xin, const Eigen::Map<Eigen::MatrixXd>& tout, const unsigned int& npoly, const unsigned int& nder);
-RcppExport SEXP _SVCJP_CPPlwls2d_s2_LR(SEXP bwSEXP, SEXP kernel_typeSEXP, SEXP winSEXP, SEXP tinSEXP, SEXP yinSEXP, SEXP xinSEXP, SEXP toutSEXP, SEXP npolySEXP, SEXP nderSEXP) {
+RcppExport SEXP _MMVCM_CPPlwls2d_s2_LR(SEXP bwSEXP, SEXP kernel_typeSEXP, SEXP winSEXP, SEXP tinSEXP, SEXP yinSEXP, SEXP xinSEXP, SEXP toutSEXP, SEXP npolySEXP, SEXP nderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -71,13 +71,13 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_SVCJP_CPPlwls2d_s1", (DL_FUNC) &_SVCJP_CPPlwls2d_s1, 10},
-    {"_SVCJP_CPPlwls2d_s2", (DL_FUNC) &_SVCJP_CPPlwls2d_s2, 9},
-    {"_SVCJP_CPPlwls2d_s2_LR", (DL_FUNC) &_SVCJP_CPPlwls2d_s2_LR, 9},
+    {"_MMVCM_CPPlwls2d_s1", (DL_FUNC) &_MMVCM_CPPlwls2d_s1, 10},
+    {"_MMVCM_CPPlwls2d_s2", (DL_FUNC) &_MMVCM_CPPlwls2d_s2, 9},
+    {"_MMVCM_CPPlwls2d_s2_LR", (DL_FUNC) &_MMVCM_CPPlwls2d_s2_LR, 9},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_SVCJP(DllInfo *dll) {
+RcppExport void R_init_MMVCM(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
