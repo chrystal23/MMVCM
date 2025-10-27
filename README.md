@@ -1,21 +1,21 @@
-# SVCJP: Semi-varying coefficient model with jump points
+# MMVCM: multi-dimensional multi-threshold varying coefficient model
 
-This package is designed to estimate the semi-varying coefficient model with an unknown number of jump discontinuities (SVCJP). As a flexible and widely applicable extension of the linear regression model, semi-varying coefficient model has been extensively studied in medical and economic research, usually under the assumption that all coefficient functions are globally continuous. However, plenty of examples in scientific
+This package is designed to estimate the multi-dimensional multi-threshold varying coefficient model (MMVCM), which can have an unknown number of multi-dimensional jump discontinuities. As a flexible and widely applicable extension of the linear regression model, semi-varying coefficient model has been extensively studied in medical and economic research, usually under the assumption that all coefficient functions are globally continuous. However, plenty of examples in scientific
 and business investigations have suggested such an assumption unrealistic.  
 
-We develop a two-stage semi-parametric estimation approach that can perform jump detection and coefficient estimation for the SVCJP model. The total number, locations and sizes of the jumps are determined using one-sided kernels, and the regression coefficients are estimated through the local polynomial method.
+We develop a two-stage semi-parametric estimation approach that can perform jump detection and coefficient estimation for the MMVCM model. The total number, locations and sizes of the jumps are determined using one-sided kernels, and the regression coefficients are estimated through the local polynomial method.
 
 ## Installation
-You can install SVCJP from GitHub using devtools. It should install in 1 minute, but may take longer if you need to update dependencies.  
+You can install MMVCM from GitHub using devtools. It should install in 1 minute, but may take longer if you need to update dependencies.  
 
 ``` r
 library(devtools)
-devtools::install_github("chrystal23/SVCJP")
+devtools::install_github("chrystal23/MMVCM")
 ```
 
 ## Tutorial
 
-The main function SVCJP requires the following inputs: (The optional input arguments are listed at the bottom of this tutorial)
+The main function MMVCM requires the following inputs: (The optional input arguments are listed at the bottom of this tutorial)
 
 ### Inputs
 
@@ -24,7 +24,7 @@ The main function SVCJP requires the following inputs: (The optional input argum
 - `xin` A matrix containing the observed values of the covariates with varying coefficients. Each column corresponds to one covariate. **This input argument corresponds to $({\mathcal{X}}_1,\ldots,{\mathcal{X}}_n)^\top$ in our paper.**
 - `zin` A matrix containing the observed values of the covariates with linear (non-varying) coefficients. Each column corresponds to one covariate.  **This input argument corresponds to the notation $(\mathbf{Z}_1,\ldots, \mathbf{Z}_n)^\top$ in our paper.**
 
-The SVCJP function returns a list of estimation results: 
+The MMVCM function returns a list of estimation results: 
 
  ### Outputs
 
@@ -32,17 +32,17 @@ The SVCJP function returns a list of estimation results:
 - `alp_est`: A list of estimated varying coefficient functions, including detected change point locations (jumptime), estimated jump sizes (jumpsize), and the estimated coefficient function values on the inputs (alp.hat)
 - `yhat`: A vector of estimated response given the input.
 - `mse`: The mean squared error of response.
-- `tuning_parameters`: The tuning parameters selected for our SVCJP method, including h_1, h_tau, h_d, h_2, zeta, and rho_d.
+- `tuning_parameters`: The tuning parameters selected for our MMVCM method, including h_1, h_tau, h_d, h_2, zeta, and rho_d.
 
 ### Examples
 An example input data with one index variable can be loaded using
 ```r
 data(syn_data_1d)
 ```
-which include an example response vector (length 2000) `yin`, a linear-coefficient covariate matrix (2000 x 2) `zin`, a varying-coefficient covariate matrix (2000 x 2) `xin`, and an index variable matrix (2000 x 1) `tin`. To implement our SVCJP method on this example data to detect jumps and estimate coefficients, we run
+which include an example response vector (length 2000) `yin`, a linear-coefficient covariate matrix (2000 x 2) `zin`, a varying-coefficient covariate matrix (2000 x 2) `xin`, and an index variable matrix (2000 x 1) `tin`. To implement our MMVCM method on this example data to detect jumps and estimate coefficients, we run
 ```r
 set.seed(123)
-res_1d <- SVCJP(tin = tin, yin = yin, xin = xin, zin = zin)
+res_1d <- MMVCM(tin = tin, yin = yin, xin = xin, zin = zin)
 #> Part 1: Estimation of the linear part.
 #>   Bandwidth for Part 1: h_1 = 0.0141032264316281
 #> Part 2: Estimation of the nonparametric part.
@@ -80,11 +80,11 @@ ggplot(pdat_1d, aes(x = t1, y = coefficient)) + geom_point() + facet_wrap(~term)
 <img src="man/figures/alpha_hat_1d.png" width="100%" />
 
 ---
-The SVCJP function can be similarly applied to an example data with two index variables:
+The MMVCM function can be similarly applied to an example data with two index variables:
 ```r
 data(syn_data_2d)
 set.seed(123)
-res_2d <- SVCJP(tin = tin, yin = yin, xin = xin, zin = zin)
+res_2d <- MMVCM(tin = tin, yin = yin, xin = xin, zin = zin)
 #> Part 1: Estimation of the linear part.
 #>   Bandwidth for Part 1: h_1 = 0.0493612925106984
 #> Part 2: Estimation of the nonparametric part.
@@ -132,7 +132,7 @@ lattice::cloud(coefficient~t1*t2 | term, data = pdat_2d,
 
 ### Optional Inputs
 
-When calling the main function SVCJP, users may specify the following optional input argument if needed. However, we recommend doing so only when reliable prior information is available, as the default values are determined based on rigorous theoretical derivations.
+When calling the main function MMVCM, users may specify the following optional input argument if needed. However, we recommend doing so only when reliable prior information is available, as the default values are determined based on rigorous theoretical derivations.
 
 - `win` A vector of weights for each observation. If win = NULL (Default), equal weights will be assigned.
 - `zeta` The threshold value for change point (jump) detection. If zeta = NULL (Default), the threshold function will be calculated based on theoretical results.
